@@ -1,0 +1,13 @@
+/* App.css */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+}
+
+input, textarea {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
