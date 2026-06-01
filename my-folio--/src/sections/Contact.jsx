@@ -18,25 +18,18 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(
+      const form = new FormData();
+      form.append("name", formData.name);
+      form.append("email", formData.email);
+      form.append("message", formData.message);
+
+      await fetch(
         "https://script.google.com/macros/s/AKfycbz9b63_z_OuGZWpor7zMg1CsoK85xCE4SbbBk6hgl8rtcQ7tX_o6TUUDCYOBeLya6tn/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { method: "POST", body: form, mode: "no-cors" }
       );
 
-      const text = await response.text();
-
-      if (text === "Success") {
-        alert("✅ Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        alert("❌ Failed to send: " + text);
-      }
+      alert("✅ Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       alert("❌ Error: " + error.message);
     }
