@@ -189,7 +189,7 @@ const About = () => {
       <div className="flex justify-center gap-4 mb-6">
         <a href="https://www.linkedin.com/in/kollara-maheshwar-rao" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 text-2xl"><FaLinkedin /></a>
         <a href="https://github.com/Kollaramaheshwarrao" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-black text-2xl"><FaGithub /></a>
-        <a href="/kollaramaheshwarrao.pdf" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 text-2xl"><FaFilePdf /></a>
+        <a href="/Kollara Maheshwarrao.pdf" download target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-medium transition"><FaFilePdf /> Download Resume</a>
       </div>
 
       {/* Filter Tabs */}
