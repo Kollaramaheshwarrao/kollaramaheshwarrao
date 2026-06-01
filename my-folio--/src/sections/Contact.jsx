@@ -24,7 +24,7 @@ const Contact = () => {
       form.append("message", formData.message);
 
       await fetch(
-        "https://script.google.com/macros/s/AKfycbyNxrf5Bxd2ULIY4W18uVTchG-eXnLYPmNdjAUSdIhrvZoQ0oRZO76am5-pg-pfW8UM/exec",
+        "https://script.google.com/macros/s/AKfycbw9XJ87ysmpFREUUHNhEds0nKuQvZJRxiMX4cLspYszYYFmLjxolz0r7P78PkIMRkbb/exec",
         { method: "POST", body: form, mode: "no-cors" }
       );
 
