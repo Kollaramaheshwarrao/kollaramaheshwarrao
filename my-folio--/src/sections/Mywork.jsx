@@ -1,97 +1,138 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 
+// ✅ TO ADD A NEW PROJECT — just add an object here!
 const projects = [
   {
+    id: 1,
     title: 'UdyamSphere',
-    desc: 'An entrepreneurship platform connecting startups, mentors, and investors. Built with React, Node.js & Firebase.',
+    desc: 'Entrepreneurship platform connecting startups, mentors & investors.',
+    long: 'Built a full-stack platform for the startup ecosystem with features like mentor matching, investor discovery, and event management. Powered by React, Node.js & Firebase.',
     tags: ['React', 'Node.js', 'Firebase'],
     category: 'Full Stack',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-blue-500 to-cyan-400',
+    emoji: '🚀',
+    gradient: 'from-blue-600 to-cyan-500',
+    featured: true,
   },
   {
+    id: 2,
     title: 'AI Women Safety System',
-    desc: 'NLP-based system for detecting threats in cyberspace. Research published at International Conference 2024.',
-    tags: ['Python', 'NLP', 'ML'],
+    desc: 'NLP system detecting threats in cyberspace — research published 2024.',
+    long: 'Developed an NLP pipeline using Naive Bayes, tokenization & lemmatization to classify threatening content online. Published at International Conference on Women Safety in Cyberspace 2024.',
+    tags: ['Python', 'NLP', 'Naive Bayes'],
     category: 'AI/ML',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-purple-500 to-pink-400',
+    emoji: '🛡️',
+    gradient: 'from-purple-600 to-pink-500',
+    featured: true,
   },
   {
+    id: 3,
     title: 'Digital Forensics Tool',
-    desc: 'Cybersecurity tool for digital evidence analysis. Published at International Cybersecurity Conference 2024.',
+    desc: 'Cybersecurity evidence analysis tool — published at Int. Conference 2024.',
+    long: 'Built a digital forensics toolkit for analyzing cyber evidence, extracting metadata, and generating investigation reports. Published at International Cybersecurity Conference 2024.',
     tags: ['Python', 'Cybersecurity', 'Forensics'],
     category: 'AI/ML',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-red-500 to-orange-400',
+    emoji: '🔍',
+    gradient: 'from-red-600 to-orange-500',
+    featured: false,
   },
   {
+    id: 4,
     title: 'Mahi Genix Portfolio',
-    desc: 'Personal portfolio website with timeline, animations, and contact form integration.',
+    desc: 'This portfolio — built with React, Tailwind & Framer Motion.',
+    long: 'Designed and developed a personal portfolio with animated timeline, skill showcase, dark contact section, and Google Sheets form integration.',
     tags: ['React', 'Tailwind', 'Framer Motion'],
     category: 'Frontend',
     github: 'https://github.com/Kollaramaheshwarrao/kollaramaheshwarrao',
     demo: 'https://kollaramaheshwarrao.vercel.app',
-    color: 'from-green-500 to-teal-400',
+    emoji: '🎨',
+    gradient: 'from-green-600 to-teal-500',
+    featured: false,
   },
   {
+    id: 5,
     title: 'CSI Community Platform',
-    desc: 'Platform for managing CSI Hyderabad Chapter events, members, and announcements.',
+    desc: 'Event & member management platform for CSI Hyderabad Chapter.',
+    long: 'Built a full-stack community platform for managing events, registrations, and member tracking for the CSI Hyderabad Chapter student council.',
     tags: ['React', 'Firebase', 'Tailwind'],
     category: 'Full Stack',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-yellow-500 to-amber-400',
+    emoji: '👥',
+    gradient: 'from-yellow-500 to-amber-400',
+    featured: false,
   },
   {
+    id: 6,
     title: 'Generative AI Chatbot',
-    desc: 'Prompt-engineered AI chatbot using Generative AI APIs with custom knowledge base.',
+    desc: 'Prompt-engineered chatbot with custom knowledge base using Gen AI APIs.',
+    long: 'Engineered a context-aware AI chatbot using Generative AI APIs with Streamlit UI, custom system prompts, and domain-specific knowledge injection.',
     tags: ['Python', 'Gen AI', 'Streamlit'],
     category: 'AI/ML',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-indigo-500 to-violet-400',
+    emoji: '🤖',
+    gradient: 'from-indigo-600 to-violet-500',
+    featured: false,
   },
   {
+    id: 7,
     title: 'Sales CRM Dashboard',
-    desc: 'CRM tool built during Codeyoung role to track leads, pipeline, and client interactions.',
+    desc: 'CRM tool for tracking leads, pipeline & client interactions.',
+    long: 'Developed a real-world CRM dashboard during my role at Codeyoung with lead tracking, pipeline stages, email logs, and analytics using MERN stack.',
     tags: ['React', 'MongoDB', 'Express'],
     category: 'Full Stack',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-pink-500 to-rose-400',
+    emoji: '📊',
+    gradient: 'from-pink-600 to-rose-500',
+    featured: false,
   },
   {
+    id: 8,
     title: 'Data Analysis Dashboard',
-    desc: 'Interactive BI dashboard for visualizing datasets with charts, filters, and reports.',
+    desc: 'Interactive BI dashboard with charts, filters and reports.',
+    long: 'Built an interactive data analytics dashboard using Python, Streamlit & Pandas for visualizing business datasets with dynamic filters, charts, and export features.',
     tags: ['Python', 'Streamlit', 'Pandas'],
     category: 'Data',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-teal-500 to-cyan-400',
+    emoji: '📈',
+    gradient: 'from-teal-600 to-cyan-500',
+    featured: false,
   },
   {
-    title: 'Hackathon Winning Project – Nirvana',
-    desc: 'Winning project at Nirvana Hackathon 2025. Innovative tech solution built in 24 hours.',
+    id: 9,
+    title: 'Nirvana Hackathon Winner',
+    desc: 'Winning project built in 24 hours at Nirvana Hackathon 2025.',
+    long: 'Designed and shipped a full working product in 24 hours at Nirvana Hackathon 2025. Won first place for innovation, execution, and real-world impact.',
     tags: ['React', 'Node.js', 'AI'],
     category: 'Full Stack',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-orange-500 to-yellow-400',
+    emoji: '🏆',
+    gradient: 'from-orange-500 to-yellow-400',
+    featured: false,
   },
   {
+    id: 10,
     title: 'SPECTRA Expo Project',
-    desc: 'Runner-up project at SPECTRA 2026 Project Expo. Smart tech solution with real-world impact.',
+    desc: 'Runner-up at SPECTRA 2026 Project Expo — smart tech with real-world impact.',
+    long: 'Built a smart IoT + web solution presented at SPECTRA 2026 Project Expo. Achieved runner-up position for innovative approach and scalable architecture.',
     tags: ['IoT', 'React', 'Firebase'],
     category: 'Full Stack',
     github: 'https://github.com/Kollaramaheshwarrao',
     demo: '#',
-    color: 'from-cyan-500 to-blue-400',
+    emoji: '🌟',
+    gradient: 'from-cyan-600 to-blue-500',
+    featured: false,
   },
 ];
 
@@ -99,85 +140,140 @@ const categories = ['All', 'Full Stack', 'AI/ML', 'Frontend', 'Data'];
 
 const MyWork = () => {
   const [active, setActive] = useState('All');
+  const [selected, setSelected] = useState(null);
+
   const filtered = active === 'All' ? projects : projects.filter(p => p.category === active);
 
   return (
-    <section id="mywork" className="relative py-20 px-4 bg-[#0f172a] overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 opacity-5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 opacity-5 rounded-full blur-3xl" />
+    <section id="mywork" className="relative py-20 px-4 bg-[#0a0f1e] overflow-hidden">
+      {/* bg blobs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 opacity-5 blur-3xl rounded-full" />
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-600 opacity-5 blur-3xl rounded-full" />
 
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-4xl font-bold text-center text-white mb-2"
+        className="text-4xl font-bold text-center text-white mb-1"
       >
         My Work
       </motion.h2>
-      <p className="text-center text-gray-400 mb-8">10 projects that define my journey 🚀</p>
+      <p className="text-center text-gray-500 mb-8 text-sm">Click any project to explore 👇</p>
 
-      {/* Filter */}
+      {/* Filter Pills */}
       <div className="flex flex-wrap justify-center gap-2 mb-10">
         {categories.map(cat => (
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${active === cat ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md' : 'bg-white/10 text-gray-400 hover:bg-white/20'}`}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${active === cat
+              ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-purple-500/20'
+              : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'}`}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      {/* Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Project List — horizontal scroll on mobile, vertical stack on desktop */}
+      <div className="max-w-5xl mx-auto flex flex-col gap-4">
         <AnimatePresence>
           {filtered.map((project, idx) => (
             <motion.div
-              key={project.title}
+              key={project.id}
               layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ delay: idx * 0.05, type: 'spring', stiffness: 80 }}
-              className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col gap-3"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 30 }}
+              transition={{ delay: idx * 0.04, type: 'spring', stiffness: 90 }}
+              onClick={() => setSelected(selected?.id === project.id ? null : project)}
+              className="cursor-pointer group"
             >
-              {/* Top gradient bar */}
-              <div className={`h-1 w-16 rounded-full bg-gradient-to-r ${project.color} mb-1`} />
+              {/* Row Card */}
+              <div className={`flex items-center gap-5 bg-white/5 border border-white/10 rounded-2xl px-5 py-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300`}>
+                {/* Emoji / Number */}
+                <div className={`w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center text-2xl shadow-lg`}>
+                  {project.emoji}
+                </div>
 
-              <div className="flex items-start justify-between">
-                <h3 className="text-white font-bold text-lg leading-tight">{project.title}</h3>
-                <span className={`text-xs px-2 py-0.5 rounded-full bg-gradient-to-r ${project.color} text-white font-medium ml-2 shrink-0`}>
-                  {project.category}
-                </span>
+                {/* Info */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-white font-bold text-base">{project.title}</h3>
+                    <span className={`text-xs px-2 py-0.5 rounded-full bg-gradient-to-r ${project.gradient} text-white font-medium`}>
+                      {project.category}
+                    </span>
+                    {project.featured && (
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 font-medium border border-yellow-500/30">
+                        ⭐ Featured
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-gray-400 text-sm mt-0.5 truncate">{project.desc}</p>
+                </div>
+
+                {/* Tags - hidden on small */}
+                <div className="hidden md:flex gap-2 shrink-0">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-xs bg-white/10 text-gray-300 px-2 py-0.5 rounded-md">{tag}</span>
+                  ))}
+                </div>
+
+                {/* Arrow */}
+                <motion.div
+                  animate={{ rotate: selected?.id === project.id ? 90 : 0 }}
+                  className="text-gray-500 text-sm shrink-0 ml-2"
+                >
+                  ▶
+                </motion.div>
               </div>
 
-              <p className="text-gray-400 text-sm leading-6">{project.desc}</p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {project.tags.map(tag => (
-                  <span key={tag} className="text-xs bg-white/10 text-gray-300 px-2 py-0.5 rounded-md">{tag}</span>
-                ))}
-              </div>
-
-              {/* Links */}
-              <div className="flex gap-3 mt-2">
-                <a href={project.github} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition">
-                  <FaGithub /> Code
-                </a>
-                {project.demo !== '#' && (
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition">
-                    <FaExternalLinkAlt /> Live Demo
-                  </a>
+              {/* Expanded Detail Panel */}
+              <AnimatePresence>
+                {selected?.id === project.id && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className={`mx-2 mt-1 rounded-2xl bg-gradient-to-br ${project.gradient} p-px`}>
+                      <div className="bg-[#0f172a] rounded-2xl p-5 flex flex-col md:flex-row gap-5">
+                        <div className="flex-1">
+                          <p className="text-gray-300 text-sm leading-7">{project.long}</p>
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {project.tags.map(tag => (
+                              <span key={tag} className={`text-xs px-2 py-0.5 rounded-md bg-gradient-to-r ${project.gradient} text-white font-medium`}>{tag}</span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="flex md:flex-col gap-3 shrink-0">
+                          <a href={project.github} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm rounded-xl transition">
+                            <FaGithub /> Code
+                          </a>
+                          {project.demo !== '#' && (
+                            <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                              className={`flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white text-sm rounded-xl shadow transition hover:opacity-90`}>
+                              <FaExternalLinkAlt /> Live Demo
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 )}
-              </div>
+              </AnimatePresence>
             </motion.div>
           ))}
         </AnimatePresence>
       </div>
+
+      {/* Add project hint */}
+      <p className="text-center text-gray-600 text-xs mt-10 flex items-center justify-center gap-1">
+        <FaCode /> Add new projects by editing the projects array in Mywork.jsx
+      </p>
     </section>
   );
 };
