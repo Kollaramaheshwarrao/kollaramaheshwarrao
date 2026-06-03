@@ -175,54 +175,48 @@ const MyWork = () => {
         ))}
       </div>
 
-      {/* Project List — horizontal scroll on mobile, vertical stack on desktop */}
-      <div className="max-w-5xl mx-auto flex flex-col gap-4">
+      {/* Project List */}
+      <div className="max-w-2xl mx-auto flex flex-col gap-3">
         <AnimatePresence>
           {filtered.map((project, idx) => (
             <motion.div
               key={project.id}
               layout
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
               transition={{ delay: idx * 0.04, type: 'spring', stiffness: 90 }}
               onClick={() => setSelected(selected?.id === project.id ? null : project)}
-              className="cursor-pointer group"
+              className="cursor-pointer"
             >
               {/* Row Card */}
-              <div className={`flex items-center gap-5 bg-white/5 border border-white/10 rounded-2xl px-5 py-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300`}>
-                {/* Emoji / Number */}
-                <div className={`w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center text-2xl shadow-lg`}>
+              <div className={`flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 hover:bg-white/10 hover:border-white/20 transition-all duration-300`}>
+                {/* Emoji */}
+                <div className={`w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center text-xl shadow-lg`}>
                   {project.emoji}
                 </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-white font-bold text-base">{project.title}</h3>
-                    <span className={`text-xs px-2 py-0.5 rounded-full bg-gradient-to-r ${project.gradient} text-white font-medium`}>
-                      {project.category}
-                    </span>
+                    <h3 className="text-white font-bold text-sm">{project.title}</h3>
                     {project.featured && (
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 font-medium border border-yellow-500/30">
-                        ⭐ Featured
-                      </span>
+                      <span className="text-xs px-1.5 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">⭐</span>
                     )}
                   </div>
-                  <p className="text-gray-400 text-sm mt-0.5 truncate">{project.desc}</p>
-                </div>
-
-                {/* Tags - hidden on small */}
-                <div className="hidden md:flex gap-2 shrink-0">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-xs bg-white/10 text-gray-300 px-2 py-0.5 rounded-md">{tag}</span>
-                  ))}
+                  <p className="text-gray-400 text-xs mt-0.5 line-clamp-1">{project.desc}</p>
+                  {/* Tags on mobile */}
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="text-xs bg-white/10 text-gray-300 px-1.5 py-0.5 rounded">{tag}</span>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Arrow */}
                 <motion.div
                   animate={{ rotate: selected?.id === project.id ? 90 : 0 }}
-                  className="text-gray-500 text-sm shrink-0 ml-2"
+                  className="text-gray-500 text-xs shrink-0"
                 >
                   ▶
                 </motion.div>
@@ -235,27 +229,25 @@ const MyWork = () => {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <div className={`mx-2 mt-1 rounded-2xl bg-gradient-to-br ${project.gradient} p-px`}>
-                      <div className="bg-[#0f172a] rounded-2xl p-5 flex flex-col md:flex-row gap-5">
-                        <div className="flex-1">
-                          <p className="text-gray-300 text-sm leading-7">{project.long}</p>
-                          <div className="flex flex-wrap gap-2 mt-3">
-                            {project.tags.map(tag => (
-                              <span key={tag} className={`text-xs px-2 py-0.5 rounded-md bg-gradient-to-r ${project.gradient} text-white font-medium`}>{tag}</span>
-                            ))}
-                          </div>
+                    <div className={`mx-1 mt-1 rounded-2xl bg-gradient-to-br ${project.gradient} p-px`}>
+                      <div className="bg-[#0f172a] rounded-2xl p-4 flex flex-col gap-4">
+                        <p className="text-gray-300 text-sm leading-6">{project.long}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {project.tags.map(tag => (
+                            <span key={tag} className={`text-xs px-2 py-0.5 rounded-md bg-gradient-to-r ${project.gradient} text-white font-medium`}>{tag}</span>
+                          ))}
                         </div>
-                        <div className="flex md:flex-col gap-3 shrink-0">
+                        <div className="flex gap-3">
                           <a href={project.github} target="_blank" rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm rounded-xl transition">
+                            className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm rounded-xl transition flex-1 justify-center">
                             <FaGithub /> Code
                           </a>
                           {project.demo !== '#' && (
                             <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                              className={`flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white text-sm rounded-xl shadow transition hover:opacity-90`}>
+                              className={`flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white text-sm rounded-xl shadow transition hover:opacity-90 flex-1 justify-center`}>
                               <FaExternalLinkAlt /> Live Demo
                             </a>
                           )}
