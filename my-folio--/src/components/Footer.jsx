@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope, FaArrowUp } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope, FaArrowUp, FaTwitter } from 'react-icons/fa';
 
 const socials = [
   { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/kollara-maheshwar-rao', label: 'LinkedIn', color: 'hover:bg-blue-600' },
   { icon: <FaGithub />, url: 'https://github.com/Kollaramaheshwarrao', label: 'GitHub', color: 'hover:bg-gray-600' },
+  { icon: <FaTwitter />, url: 'https://x.com/KollaraRao', label: 'X', color: 'hover:bg-neutral-800' },
   { icon: <FaInstagram />, url: 'https://instagram.com/', label: 'Instagram', color: 'hover:bg-pink-600' },
   { icon: <FaEnvelope />, url: 'mailto:kollaramaheshwarrao@gmail.com', label: 'Email', color: 'hover:bg-red-600' },
 ];

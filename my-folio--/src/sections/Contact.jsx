@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaTwitter } from "react-icons/fa";
 
 const socials = [
   { icon: <FaLinkedin />, label: "LinkedIn", value: "kollara-maheshwar-rao", href: "https://www.linkedin.com/in/kollara-maheshwar-rao", color: "bg-blue-600" },
   { icon: <FaGithub />, label: "GitHub", value: "Kollaramaheshwarrao", href: "https://github.com/Kollaramaheshwarrao", color: "bg-gray-800" },
+  { icon: <FaTwitter />, label: "X (Twitter)", value: "@KollaraRao", href: "https://x.com/KollaraRao", color: "bg-neutral-800" },
   { icon: <FaEnvelope />, label: "Email", value: "kollaramaheshwarrao@gmail.com", href: "mailto:kollaramaheshwarrao@gmail.com", color: "bg-red-500" },
   { icon: <FaPhoneAlt />, label: "Phone", value: "Available on request", href: "#", color: "bg-green-600" },
   { icon: <FaMapMarkerAlt />, label: "Location", value: "Hyderabad, India", href: "#", color: "bg-orange-500" },
